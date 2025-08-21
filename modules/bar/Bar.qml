@@ -3,7 +3,6 @@ import Quickshell
 import Quickshell.Hyprland
 
 import qs.Settings
-
 import "."
 import "./../widgets"
 
@@ -18,16 +17,15 @@ PanelWindow {
         right: true;
     }
 
-    implicitHeight: Settings.settings.barHeight || 40
+    implicitHeight: Settings.settings.barHeight
 
     ParallelogramBackdrop {
         slantStart: false
         fillColor: "#101016"
-
         HomeButton {
             anchors {
-                left: parent.left
-                verticalCenter: parent.verticalCenter
+                top: parent.top
+                bottom: parent.bottom
             }
         }
     }
@@ -40,7 +38,7 @@ PanelWindow {
 
         // Workspace in the Center
         Loader {
-            source: "Workspaces.qml"
+            source: "./../widgets/Workspaces.qml"
             anchors.verticalCenter: parent.verticalCenter
         }
     }
@@ -49,33 +47,23 @@ PanelWindow {
     Loader {
         id: indicatorsModule
         anchors {
-            right: timeDisplay.left
-            verticalCenter: parent.verticalCenter
-            rightMargin: 0
+            right: clock.left
+            rightMargin: -10
+            top: parent.top
+            bottom: parent.bottom
         }
         source: "IndicatorsModule.qml"
-        
-        // Pass shell properties to the indicators
-        // property var shell: QtObject {
-        //     property int volume: panel.volume
-        //     property bool volumeMuted: panel.volumeMuted
-        // }
-        
-        // Pass shell to the loaded component
-        // onLoaded: {
-        //     indicatorsModule.item.shell = shell
-        // }
     }
 
     ParallelogramBackdrop {
-        id: timeDisplay
+        id: clock
         anchors {
             right: parent.right
         }
         fillColor: "#101016"
         slantEnd: false
 
-        TimeDisplay{
+        Clock{
             anchors.verticalCenter: parent.verticalCenter
         }
     }

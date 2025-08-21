@@ -1,11 +1,11 @@
-// Taken from: https://github.com/ryzendew/Reborn-Quickshell/blob/main/modules/bar/Components/TimeDisplay.qml
+// Taken from: https://github.com/ryzendew/Reborn-Quickshell/blob/main/modules/bar/Components/clock.qml
 import QtQuick
 import QtQuick.Layouts
 import qs.Settings
 import qs.Services
 
 Rectangle {
-    id: timeDisplay
+    id: clock
     color: "#000000"
     radius: 5
     
@@ -33,7 +33,7 @@ Rectangle {
         // Time display
         Text {
             id: timeText
-            text: timeDisplay.currentTime
+            text: clock.currentTime
             color: TimeService.timeColor
             font.pixelSize: TimeService.timeSize * (Settings.settings.fontSizeMultiplier || 1.0)
             font.family: "Inter, sans-serif"
@@ -47,7 +47,7 @@ Rectangle {
                 // Date display
         Text {
             id: dateText
-            text: timeDisplay.currentDate
+            text: clock.currentDate
             color: TimeService.dateColor
             font.pixelSize: TimeService.dateSize * (Settings.settings.fontSizeMultiplier || 1.0)
             font.family: "Inter, sans-serif"
@@ -84,8 +84,8 @@ Rectangle {
     
     function updateTime() {
             var now = new Date()
-        timeDisplay.currentDate = TimeService.formatDate(now)
-        timeDisplay.currentTime = TimeService.formatTime(now)
+        clock.currentDate = TimeService.formatDate(now)
+        clock.currentTime = TimeService.formatTime(now)
     }
     
     // Initialize time immediately
@@ -100,11 +100,11 @@ Rectangle {
         cursorShape: Qt.PointingHandCursor
         
         onEntered: {
-            timeDisplay.isHovered = true
+            clock.isHovered = true
         }
         
         onExited: {
-            timeDisplay.isHovered = false
+            clock.isHovered = false
         }
         
         onClicked: {

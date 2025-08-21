@@ -3,7 +3,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Io
-// import qs.Services
+import qs.Services
 
 Singleton {
     property string shellName: "Quickshell"
@@ -78,6 +78,7 @@ Singleton {
             
             // Bar settings
             property int barHeight: 40
+            property int itemPadding: 4
             property string workspaceBorderColor: "transparent"
             property string workspaceIndicatorColor: "#00ffff"
             property int systemTraySize: 24
@@ -102,7 +103,7 @@ Singleton {
             // Power Managment
             property JsonObject powerOptions: JsonObject{
                 property int low: 20
-                property int critical: 5
+                property int critical: 10
                 property int suspend: 3
                 property bool automaticSuspend: true
             }

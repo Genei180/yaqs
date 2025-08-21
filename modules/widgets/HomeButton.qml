@@ -5,15 +5,12 @@ import qs.Settings
 import qs.Services
 
 Rectangle {
-
-    id: homeButton
-    width: (Settings.settings.barLogoSize || 24) + 10
-    height: (Settings.settings.barLogoSize || 24)
+    implicitWidth: logoImage.width + 10
     color: "transparent"
 
     Rectangle {
-        width: (Settings.settings.barLogoSize || 24)
-        height: (Settings.settings.barLogoSize || 24)
+        id: homeButton
+        implicitWidth: logoImage.width
         radius: (Settings.settings.barLogoSize || 24) / 2
         color: homeMouseArea.containsMouse ? "#252525" : "transparent"
         Image {
@@ -23,7 +20,9 @@ Rectangle {
             source: "./../../assets/"+Settings.settings.barLogo
             fillMode: Image.PreserveAspectFit
         }
-        anchors{
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
             verticalCenter: parent.verticalCenter
         }

@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 
 Item {
     id: root
@@ -14,11 +15,11 @@ Item {
     default property alias injectedItem: contentItem.data
 
     // Width = content width + padding + optional slants
-    width: injectedItem[0].width
+    implicitWidth: injectedItem[0].width
             + (root.slantStart ? root.slant : 0)
             + (root.slantEnd ? root.slant : 0)
 
-    height: parent.height
+    implicitHeight: parent.height
 
     // Safety clamp so radii never fold the shape
     function clampRadius(r) {
@@ -86,13 +87,16 @@ Item {
         onHeightChanged: requestPaint();
     }
 
-    // where injected content goes
     Item {
         id: contentItem
+        Layout.fillWidth: true
+        Layout.fillHeight: true
         anchors {
             left: parent.left
-            verticalCenter: parent.verticalCenter
+            top: parent.top
+            bottom: parent.bottom
             leftMargin: (root.slantStart ? root.slant : 0)
+            rightMargin: (root.slantEnd ? -root.slant : 0)
         }
     }
 }
