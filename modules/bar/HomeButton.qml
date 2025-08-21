@@ -7,35 +7,27 @@ import qs.Services
 Rectangle {
 
     id: homeButton
-    implicitWidth: logoImage.width + 10
-    radius: logoImage.width / 2
-    color: homeMouseArea.containsMouse ? "#252525" : "transparent"
-    // border.color: homeMouseArea.containsMouse ? "#555555" : "transparent"
-    // border.width: homeMouseArea.containsMouse ? 1 : 0
+    width: (Settings.settings.barLogoSize || 24) + 10
+    height: (Settings.settings.barLogoSize || 24)
+    color: "transparent"
 
-    Image {
-        id: logoImage
+    Rectangle {
+        width: (Settings.settings.barLogoSize || 24)
+        height: (Settings.settings.barLogoSize || 24)
+        radius: (Settings.settings.barLogoSize || 24) / 2
+        color: homeMouseArea.containsMouse ? "#252525" : "transparent"
+        Image {
+            id: logoImage
+            width: (Settings.settings.barLogoSize || 24)
+            height: (Settings.settings.barLogoSize || 24)
+            source: "./../../assets/"+Settings.settings.barLogo
+            fillMode: Image.PreserveAspectFit
+        }
         anchors{
             horizontalCenter: parent.horizontalCenter
             verticalCenter: parent.verticalCenter
         }
-        width: (Settings.settings.barLogoSize || 24)
-        height: (Settings.settings.barLogoSize || 24)
-        source: "./../../assets/OSLogo.svg"
-        fillMode: Image.PreserveAspectFit
-        smooth: false
-        mipmap: true
-        cache: true
-        sourceSize.width: 64
-        sourceSize.height: 64
     }
-
-    // Dynamic color overlay for the logo
-    // ColorOverlay {
-    //     anchors.fill: dockLogoImage
-    //     source: dockLogoImage
-    //     color: LogoService.logoColor
-    // }
 
     MouseArea {
         id: homeMouseArea
@@ -77,12 +69,4 @@ Rectangle {
             easing.type: Easing.OutQuad
         }
     }
-
-    Behavior on border.color {
-        ColorAnimation {
-            duration: 150
-            easing.type: Easing.OutQuad
-        }
-    }
-
 }

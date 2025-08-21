@@ -100,7 +100,7 @@ Singleton {
             property string visualizerType: "radial"
             
             // Logo settings
-            property string barLogo: "NixOS.svg"
+            property string barLogo: "NixOSLogo.svg"
             property string dockLogo: "arch-symbolic.svg"
             property string logoColor: "#ffffff"
             
