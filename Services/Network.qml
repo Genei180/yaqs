@@ -102,7 +102,7 @@ QtObject {
         hasWifiConnection = hasWifi;
         hasEthernetConnection = hasEthernet;
         
-        console.log("Network service: Updated connection status - Active:", hasActive, "WiFi:", hasWifi, "Ethernet:", hasEthernet);
+        // console.log("Network service: Updated connection status - Active:", hasActive, "WiFi:", hasWifi, "Ethernet:", hasEthernet);
     }
     
     property string connectionType: {
@@ -156,7 +156,7 @@ QtObject {
                     
                     const parts = line.split(":");
                     if (parts.length < 4) {
-                        console.warn("Malformed nmcli output line:", line);
+                        // console.warn("Malformed nmcli output line:", line);
                         continue;
                     }
                     
@@ -187,7 +187,7 @@ QtObject {
                         };
                         
                         // Debug logging for connection detection
-                        console.log("Network service: Detected connection:", ssid, "Type:", type, "Normalized:", normalizedType);
+                        // console.log("Network service: Detected connection:", ssid, "Type:", type, "Normalized:", normalizedType);
                     }
                 }
                 
@@ -215,7 +215,7 @@ QtObject {
                     
                     const parts = line.split(":");
                     if (parts.length < 4) {
-                        console.warn("Malformed nmcli output line:", line);
+                        // console.warn("Malformed nmcli output line:", line);
                         continue;
                     }
                     

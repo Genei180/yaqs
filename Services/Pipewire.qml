@@ -1307,7 +1307,7 @@ QtObject {
                         if (source.volume !== newVolume || source.muted !== newMuted) {
                             availableSources[i].volume = newVolume
                             availableSources[i].muted = newMuted
-                            console.log("Pipewire service: Updated source volume:", source.name, newVolume, "muted:", newMuted)
+                            // console.log("Pipewire service: Updated source volume:", source.name, newVolume, "muted:", newMuted)
                         }
                     }
                 }

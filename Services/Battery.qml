@@ -1,31 +1,56 @@
-import QtQuick
+// Taken from: https://github.com/end-4/dots-hyprland/blob/main/.config/quickshell/ii/services/Battery.qml
+pragma Singleton
+
 import Quickshell
 import Quickshell.Services.UPower
+import QtQuick
+import Quickshell.Io
+import qs.Settings
 
-Scope {
-    id: batteryService
+Singleton {
+    property bool available: UPower.displayDevice.isLaptopBattery
+    property var chargeState: UPower.displayDevice.state
+    property bool isCharging: chargeState == UPowerDeviceState.Charging
+    property bool isPluggedIn: isCharging || chargeState == UPowerDeviceState.PendingCharge
+    property real percentage: UPower.displayDevice.percentage * 100
+    readonly property bool allowAutomaticSuspend: Settings.settings.powerOptions.automaticSuspend // TODO add to Settings
 
-    UPower {
-        id: upower
+    property bool isLow: percentage <= Settings.settings.powerOptions.low
+    property bool isCritical: percentage <= Settings.settings.powerOptions.critical
+    property bool isSuspending: percentage <= Settings.settings.powerOptions.suspend
+
+    property bool isLowAndNotCharging: isLow && !isCharging
+    property bool isCriticalAndNotCharging: isCritical && !isCharging
+    property bool isSuspendingAndNotCharging: allowAutomaticSuspend && isSuspending && !isCharging
+
+    property real energyRate: UPower.displayDevice.changeRate
+    property real timeToEmpty: UPower.displayDevice.timeToEmpty
+    property real timeToFull: UPower.displayDevice.timeToFull
+
+    onIsLowAndNotChargingChanged: {
+        if (available && isLowAndNotCharging) Quickshell.execDetached([
+            "notify-send", 
+            Translation.tr("Low battery"), 
+            Translation.tr("Consider plugging in your device"), 
+            "-u", "critical",
+            "-a", "Shell"
+        ])
     }
 
-    // Query the primary battery once
-    property UPowerDevice battery: upower.device(upower.primaryBattery)
+    onIsCriticalAndNotChargingChanged: {
+        if (available && isCriticalAndNotCharging) Quickshell.execDetached([
+            "notify-send", 
+            Translation.tr("Critically low battery"), 
+            Translation.tr("Please charge!\nAutomatic suspend triggers at %1").arg(Settings.settings.powerOptions.suspend), 
+            "-u", "critical",
+            "-a", "Shell"
+        ]);
+            
+    }
 
-    // Exported data
-    readonly property int percentage: battery ? Math.round(battery.percentage) : 0
-    readonly property bool charging: battery && battery.state === UPowerDevice.Charging
-    readonly property bool full: battery && battery.state === UPowerDevice.Full
-
-    // readonly property string icon: {
-    //     if (!battery) return "battery_unknown"
-    //     if (full) return "battery_full"
-    //     if (charging) return "battery_charging_full"
-
-    //     if (percentage > 80) return "battery_6_bar"
-    //     if (percentage > 60) return "battery_5_bar"
-    //     if (percentage > 40) return "battery_4_bar"
-    //     if (percentage > 20) return "battery_2_bar"
-    //     return "battery_alert"
-    // }
+    onIsSuspendingAndNotChargingChanged: {
+        if (available && isSuspendingAndNotCharging) {
+            Quickshell.execDetached(["bash", "-c", `systemctl suspend || loginctl suspend`]);
+        }
+    }
 }

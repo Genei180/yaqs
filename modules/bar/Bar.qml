@@ -56,18 +56,19 @@ PanelWindow {
         source: "IndicatorsModule.qml"
         
         // Pass shell properties to the indicators
-        property var shell: QtObject {
-            property int volume: panel.volume
-            property bool volumeMuted: panel.volumeMuted
-        }
+        // property var shell: QtObject {
+        //     property int volume: panel.volume
+        //     property bool volumeMuted: panel.volumeMuted
+        // }
         
         // Pass shell to the loaded component
-        onLoaded: {
-            indicatorsModule.item.shell = shell
-        }
+        // onLoaded: {
+        //     indicatorsModule.item.shell = shell
+        // }
     }
 
     ParallelogramBackdrop {
+        id: timeDisplay
         anchors {
             right: parent.right
         }
@@ -75,7 +76,6 @@ PanelWindow {
         slantEnd: false
 
         TimeDisplay{
-            id: timeDisplay
             anchors.verticalCenter: parent.verticalCenter
         }
     }

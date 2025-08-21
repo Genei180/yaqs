@@ -40,7 +40,7 @@ Singleton {
         }
         
         onLoadFailed: function(error) {
-            settingAdapter = {}
+            // settingAdapter = {}
             writeAdapter()
         }
 
@@ -99,6 +99,14 @@ Singleton {
             // Visualizer settings
             property string visualizerType: "radial"
             
+            // Power Managment
+            property JsonObject powerOptions: JsonObject{
+                property int low: 20
+                property int critical: 5
+                property int suspend: 3
+                property bool automaticSuspend: true
+            }
+
             // Logo settings
             property string barLogo: "NixOSLogo.svg"
             property string dockLogo: "arch-symbolic.svg"

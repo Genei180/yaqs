@@ -34,12 +34,6 @@ Rectangle {
         spacing: 0
         
         // Battery indicator
-        
-        // instantiate the service
-        Battery {
-            id: batteryService
-        }
-
         Rectangle {
             id: batteryIndicator
             Layout.fillHeight: true
@@ -47,7 +41,7 @@ Rectangle {
             width: Settings.settings.indicatorsSize || 24
             height: Settings.settings.indicatorsSize || 24
             color: "transparent"
-            visible: shell
+            // visible: shell
             
             // Hover effects - simple magnification
             property bool isHovered: false
@@ -67,26 +61,31 @@ Rectangle {
                 
                 // Direct property binding for reactive updates
                 text: {
-                    var percentage = batteryService.percentage
-                    var charging = batteryService.charging
+                    var percentage = Battery.percentage
                     var icon = ""
                     
-                    console.log("Battery")
-                    console.log(percentage)
+                    console.log("Battery Percentage: " +percentage)
 
-                    if (charging) return "power"; // fallback if font missing
-                    if (full) return "battery_full";
-                    if (percentage >= 90) return "battery_6_bar";
-                    if (percentage >= 70) return "battery_5_bar";
-                    if (percentage >= 50) return "battery_4_bar";
-                    if (percentage >= 30) return "battery_3_bar";
-                    if (percentage >= 10) return "battery_2_bar";
-                    return "\uF57E"; // "battery_alert"
+                    if (Battery.isCharging) {
+                        if (percentage >= 98) return "battery_full";
+                        if (percentage >= 90) return "battery_charging_90";
+                        if (percentage >= 70) return "battery_charging_70";
+                        if (percentage >= 50) return "battery_charging_50";
+                        if (percentage >= 30) return "battery_charging_30";
+                        if (percentage >= 10) return "battery_charging_20";
+                    }else{
+                        if (percentage >= 90) return "battery_6_bar";
+                        if (percentage >= 70) return "battery_5_bar";
+                        if (percentage >= 50) return "battery_4_bar";
+                        if (percentage >= 30) return "battery_3_bar";
+                        if (percentage >= 10) return "battery_2_bar";
+                        return "battery_alert";
+                    }
                     
                     return icon
                 }
             }
-            
+
             // Mouse area for volume control
             MouseArea {
                 anchors.fill: parent
