@@ -13,6 +13,7 @@ An Additonally Goal of mine is to make it Mobile Friendly so i can use it with m
 ![Screenshot](./Screenshot.png)
 
 Screenshot of the current MainBar
+
 ---
 
 ## ✨ Features
@@ -72,3 +73,11 @@ shell.qml      # entrypoint
 * Contributions welcome, but keep it simple.
 
 ---
+
+## Inspired by
+
+And maybe a little Copy Pasted to get Started learning qml from:
+* [ryzendew](https://github.com/ryzendew/Reborn-Quickshell)
+* [soramane](https://github.com/caelestia-dots/shell/tree/main)
+* [end-4](https://github.com/end-4/dots-hyprland)
+
