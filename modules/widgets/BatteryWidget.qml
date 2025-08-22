@@ -42,13 +42,13 @@ Rectangle {
                 if (percentage <= BatteryService.isCritical) return "battery_alert"; // 10
                 if (percentage <= BatteryService.isLow) return "battery_0_bar"; // 20
                 if (percentage < 20) return "battery_0_bar";
-                if (percentage >= 20) return "battery_1_bar";
-                if (percentage >= 30) return "battery_2_bar";
-                if (percentage >= 40) return "battery_3_bar";
-                if (percentage >= 60) return "battery_4_bar";
-                if (percentage >= 80) return "battery_5_bar";
-                if (percentage >= 90) return "battery_6_bar";
                 if (percentage >= 98) return "battery_full";
+                if (percentage >= 90) return "battery_6_bar";
+                if (percentage >= 80) return "battery_5_bar";
+                if (percentage >= 60) return "battery_4_bar";
+                if (percentage >= 40) return "battery_3_bar";
+                if (percentage >= 30) return "battery_2_bar";
+                if (percentage >= 20) return "battery_1_bar";
             }
             
             console.log(icon)

@@ -27,7 +27,7 @@ Screenshot of the current MainBar
 ## 📦 Requirements
 
 Placeholder Text:
-* [Quickshell](https://quickshell.dev/docs/) (latest build recommended)
+* [Quickshell](https://quickshell.org/) (latest build recommended)
 * A Wayland compositor with layer-shell support (tested on Hyprland)
 * `notify-send` for system notifications
 

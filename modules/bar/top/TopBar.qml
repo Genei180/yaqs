@@ -11,7 +11,7 @@ PanelWindow {
     visible: true
 
     anchors {
-        bottom: true;
+        top: true;
         left: true;
         right: true;
     }
