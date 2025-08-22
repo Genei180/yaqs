@@ -1,6 +1,6 @@
-# yags – Yet Another Quickshell Setup
+# YAQS – Yet Another Quickshell Setup
 
-**yags** is my personal configuration for [Quickshell](https://quickshell.org/), a flexible Wayland shell replacement.
+**YAQS** is my personal configuration for [Quickshell](https://quickshell.org/), a flexible Wayland shell replacement.
 I try to focuses on simplicity, modularity, and a clean user experience — without pretending to be the “final word” in shell configs (because it isn’t).
 
 An Additonally Goal of mine is to make it Mobile Friendly so i can use it with mobile Nix.
