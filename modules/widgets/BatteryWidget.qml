@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
 import qs.Settings
 import qs.Services
 
@@ -29,7 +28,7 @@ Rectangle {
         // Direct property binding for reactive updates
         text: {
             var percentage = BatteryService.percentage
-            var icon = ""
+            var icon = "battery_unknown"
 
             if (BatteryService.isCharging) {
                 if (percentage >= 90) return "battery_charging_90";
@@ -37,19 +36,22 @@ Rectangle {
                 if (percentage >= 60) return "battery_charging_60";
                 if (percentage >= 50) return "battery_charging_50";
                 if (percentage >= 30) return "battery_charging_30";
-                if (percentage >= 10) return "battery_charging_20";
+                if (percentage >= 20) return "battery_charging_20";
                 return "battery_charging_full" // looks Empty \-.-/
             }else{
-                if (percentage >= 98) return "battery_full";
-                if (percentage >= 90) return "battery_6_bar";
-                if (percentage >= 80) return "battery_5_bar";
-                if (percentage >= 60) return "battery_4_bar";
-                if (percentage >= 40) return "battery_3_bar";
+                if (percentage <= BatteryService.isCritical) return "battery_alert"; // 10
+                if (percentage <= BatteryService.isLow) return "battery_0_bar"; // 20
+                if (percentage < 20) return "battery_0_bar";
+                if (percentage >= 20) return "battery_1_bar";
                 if (percentage >= 30) return "battery_2_bar";
-                if (BatteryService.isLow) return "battery_1_bar"; // 20
-                if (BatteryService.isCritical) return "battery_alert"; // 10
+                if (percentage >= 40) return "battery_3_bar";
+                if (percentage >= 60) return "battery_4_bar";
+                if (percentage >= 80) return "battery_5_bar";
+                if (percentage >= 90) return "battery_6_bar";
+                if (percentage >= 98) return "battery_full";
             }
             
+            console.log(icon)
             return icon
         }
     }
@@ -71,7 +73,7 @@ Rectangle {
         }
         
         onClicked: function(mouse) {
-            console.log("Clicked on Battery!")
+            console.log("Clicked on Battery! Battery Percentage: " + BatteryService.percentage)
             //TODO: Make Pop Up for Power Management
         }
     }

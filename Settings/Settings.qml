@@ -78,12 +78,12 @@ Singleton {
             
             // Bar settings
             property int barHeight: 40
-            property int itemPadding: 4
+            property int itemPadding: 10
             property string workspaceBorderColor: "transparent"
             property string workspaceIndicatorColor: "#00ffff"
             property int systemTraySize: 24
             property int indicatorsSize: 24
-            property int barLogoSize: 40
+            property real barLogoScale: 1.0
             
             // Dock settings
             property bool showDock: true

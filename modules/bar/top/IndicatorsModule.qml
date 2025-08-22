@@ -8,7 +8,7 @@ import Quickshell.Hyprland
 import qs.Services
 import qs.Settings
 
-import "./../widgets"
+import "./../../widgets"
 
 Rectangle {
     id: indicatorsContainer
@@ -26,7 +26,7 @@ Rectangle {
         
         ParallelogramBackdrop {
             fillColor: "#101016"
-            BatteryWidget {
+            NotificationWidget {
                 anchors {
                     top: parent.top
                     bottom: parent.bottom
@@ -36,13 +36,23 @@ Rectangle {
 
         ParallelogramBackdrop {
             fillColor: "#101016"
-            AudioWidget {
+            BatteryWidget {
                 anchors {
                     top: parent.top
                     bottom: parent.bottom
                 }
             }
         }
+
+        // ParallelogramBackdrop {
+        //     fillColor: "#101016"
+        //     AudioWidget {
+        //         anchors {
+        //             top: parent.top
+        //             bottom: parent.bottom
+        //         }
+        //     }
+        // }
         
         ParallelogramBackdrop {
             fillColor: "#101016"

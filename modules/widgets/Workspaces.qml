@@ -7,9 +7,9 @@ import qs.Settings
 Rectangle {
     id: workspacesContainer
     color: "transparent"
-    border.color: Settings.settings.workspaceBorderColor || "#00ccff"
-    implicitWidth: workspacesRow.implicitWidth + 4
-    implicitHeight: workspacesRow.implicitHeight + 4
+    border.color: Settings.settings.workspaceBorderColor
+    implicitWidth: workspacesRow.implicitWidth
+    implicitHeight: workspacesRow.implicitHeight
     
     // Get current workspace
     property int currentWorkspace: 1

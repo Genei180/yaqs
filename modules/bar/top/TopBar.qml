@@ -1,10 +1,9 @@
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland
-
 import qs.Settings
-import "."
-import "./../widgets"
+
+import "./../../widgets"
 
 PanelWindow {
     id: panel
@@ -12,7 +11,7 @@ PanelWindow {
     visible: true
 
     anchors {
-        top: true;
+        bottom: true;
         left: true;
         right: true;
     }
@@ -38,7 +37,7 @@ PanelWindow {
 
         // Workspace in the Center
         Loader {
-            source: "./../widgets/Workspaces.qml"
+            source: "./../../widgets/Workspaces.qml"
             anchors.verticalCenter: parent.verticalCenter
         }
     }

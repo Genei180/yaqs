@@ -5,7 +5,7 @@ Item {
     id: root
     // Appearance
     property color fillColor: "#1a1a1a"
-    property real radius: 8        // corner radius in px
+    property real radius: 10        // corner radius in px
     property real slant: 20        // px shift of the top edge to the right
     property bool slantForward: true    // if false, the bottom edge is slanted
     property bool slantStart: true

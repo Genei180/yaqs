@@ -1,17 +1,13 @@
 import QtQuick
-import QtQuick.Layouts
 import qs.Settings
 import qs.Services
 
 // Volume indicator (single component that changes icon)
 Rectangle {
     id: volumeIndicator
-    Layout.fillHeight: true
-    Layout.rightMargin: indicatorsRowLayout.realSpacing
-    width: Settings.settings.indicatorsSize || 24
-    height: Settings.settings.indicatorsSize || 24
-    color: "transparent"
-    visible: shell
+    implicitWidth: text.implicitWidth
+    color: "red"
+    // visible: shell
     
     // Hover effects - simple magnification
     property bool isHovered: false
@@ -71,9 +67,10 @@ Rectangle {
     }
     
     Text {
+        id: text
         anchors.centerIn: parent
         font.family: "Material Symbols Outlined"
-        font.pixelSize: Settings.settings.indicatorsSize || 24
+        font.pixelSize: parent.height - Settings.settings.itemPadding
         color: "#ffffff"
         
         // Direct property binding for reactive updates

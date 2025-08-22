@@ -6,10 +6,7 @@ import qs.Services
 // Microphone indicator (single component that changes icon)
 Rectangle {
     id: micIndicator
-    Layout.fillHeight: true
-    Layout.rightMargin: indicatorsRowLayout.realSpacing
-    width: Settings.settings.indicatorsSize || 24
-    height: Settings.settings.indicatorsSize || 24
+    implicitWidth: text.implicitWidth
     color: "transparent"
     visible: shell
     
@@ -37,9 +34,10 @@ Rectangle {
     }
     
     Text {
+        id: text
         anchors.centerIn: parent
         font.family: "Material Symbols Outlined"
-        font.pixelSize: Settings.settings.indicatorsSize || 24
+        font.pixelSize: parent.height - Settings.settings.itemPadding
         color: "#ffffff"
         
         // Direct property binding for reactive updates

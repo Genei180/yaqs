@@ -5,20 +5,26 @@ import qs.Settings
 import qs.Services
 
 Rectangle {
-    implicitWidth: logoImage.width + 10
+    implicitHeight: parent.height
+    implicitWidth: parent.height
     color: "transparent"
+    id: homeButton
 
     Rectangle {
-        id: homeButton
-        implicitWidth: logoImage.width
-        radius: (Settings.settings.barLogoSize || 24) / 2
+        implicitHeight: parent.height
+        implicitWidth: parent.width 
+        radius: parent.height / 2
         color: homeMouseArea.containsMouse ? "#252525" : "transparent"
         Image {
             id: logoImage
-            width: (Settings.settings.barLogoSize || 24)
-            height: (Settings.settings.barLogoSize || 24)
+            width: parent.height * Settings.settings.barLogoScale - Settings.settings.itemPadding
+            height: parent.height * Settings.settings.barLogoScale - Settings.settings.itemPadding
             source: "./../../assets/"+Settings.settings.barLogo
             fillMode: Image.PreserveAspectFit
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                verticalCenter: parent.verticalCenter
+            }
         }
         anchors {
             top: parent.top
@@ -49,7 +55,7 @@ Rectangle {
 
     onIsHoveredChanged: {
         if (isHovered) {
-            scale = 1.1
+            scale = 1.3
         } else {
             scale = 1.0
         }

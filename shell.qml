@@ -2,13 +2,19 @@
 
 import QtQuick
 import Quickshell
-import "./modules/bar/"
+import "./modules/bar/top/"
+import "./modules/bar/right/"
 
 ShellRoot {
     id: root
 
     Loader {
         active: true
-        sourceComponent: Bar{}
+        sourceComponent: TopBar{}
+    }
+
+    Loader {
+        active: true
+        sourceComponent: RightBar{}
     }
 }
